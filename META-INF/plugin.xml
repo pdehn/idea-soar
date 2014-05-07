@@ -1,0 +1,46 @@
+<idea-plugin version="2">
+  <id>IdeaSoar</id>
+  <name>Soar</name>
+  <version>1.0</version>
+  <vendor url="https://github.com/pdehn/idea-soar">Patrick DeHaan</vendor>
+
+  <description><![CDATA[
+      Soar language plugin
+    ]]></description>
+
+  <change-notes><![CDATA[
+          no change notes
+    ]]>
+  </change-notes>
+
+  <!-- please see http://confluence.jetbrains.com/display/IDEADEV/Build+Number+Ranges for description -->
+  <idea-version since-build="131"/>
+
+  <!-- please see http://confluence.jetbrains.com/display/IDEADEV/Plugin+Compatibility+with+IntelliJ+Platform+Products
+       on how to target different products -->
+  <!-- uncomment to enable plugin in all products
+  <depends>com.intellij.modules.lang</depends>
+  -->
+
+  <extensions defaultExtensionNs="com.intellij">
+      <fileTypeFactory implementation="com.pdehaan.idea.soar.SoarFileTypeFactory" />
+      <lang.parserDefinition language="Soar" implementationClass="com.pdehaan.idea.soar.SoarParserDefinition" />
+      <lang.syntaxHighlighterFactory key="Soar" implementationClass="com.pdehaan.idea.soar.SoarSyntaxHighlighterFactory" />
+      <colorSettingsPage implementation="com.pdehaan.idea.soar.SoarColorSettingsPage" />
+      <completion.contributor language="Soar" implementationClass="com.pdehaan.idea.soar.SoarCompletionContributor" />
+      <lang.formatter language="Soar" implementationClass="com.pdehaan.idea.soar.formatting.SoarFormattingModelBuilder" />
+  </extensions>
+
+  <application-components>
+    <!-- Add your application components here -->
+  </application-components>
+
+  <project-components>
+    <!-- Add your project components here -->
+  </project-components>
+
+  <actions>
+    <!-- Add your actions here -->
+  </actions>
+
+</idea-plugin>

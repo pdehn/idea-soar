@@ -1,0 +1,129 @@
+{
+  parserClass="com.pdehaan.idea.soar.SoarParser"
+
+  extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+  psiClassPrefix="Soar"
+  psiImplClassSuffix="Impl"
+  psiPackage="com.pdehaan.idea.soar.psi"
+  psiImplPackage="com.pdehaan.idea.soar.psi.impl"
+
+  elementTypeHolderClass="com.pdehaan.idea.soar.psi.SoarTypes"
+  elementTypeClass="com.pdehaan.idea.soar.psi.SoarElementType"
+  tokenTypeClass="com.pdehaan.idea.soar.psi.SoarTokenType"
+
+  tokens = [
+    RARROW="-->"
+    SAME_TYPE="<=>"
+    GEQUAL=">="
+    LDISJUNCT="<<"
+    LEQUAL="<="
+    NEQUAL="<>"
+    RDISJUNCT=">>"
+    AMPERSAND="&"
+    ATSIGN="@"
+    CARET="^"
+    COMMA=","
+    EMARK="!"
+    EQUAL="="
+    GREATER=">"
+    HYPHEN="-"
+    LBRACE="{"
+    LESS="<"
+    LPAREN="("
+    PERIOD="."
+    PLUS="+"
+    QMARK="?"
+    RBRACE="}"
+    RPAREN=")"
+    TILDE="~"
+    LSQBRACET="["
+    RSQBRACET="]"
+    QUOTE="\""
+
+    variable="regexp:<[a-zA-Z0-9$%&*+-/:=?_]+>"
+    float_constant="regexp:[+-]?[0-9]+\.[0-9]*"
+    int_constant="regexp:[+-]?[0-9]+"
+    sym_constant="regexp:[a-zA-Z0-9\$\%\&\*\+\-\/\=\?\_][a-zA-Z0-9\$\%\&\*\+\-\/\:\=\?\_]*|\|[^\|]*\|"
+    line_comment="regexp:#.*"
+    string="regexp:\"[^\"]*\""
+  ]
+}
+
+
+grammar ::= soar_production *
+
+
+// grammar of soar productions
+
+soar_production ::= 'sp' LBRACE soar_production_body RBRACE
+
+soar_production_header ::= production_name [documentation] [flags]
+
+soar_production_body ::= soar_production_header condition_side RARROW rhs
+
+production_name ::= sym_constant
+
+documentation ::= string
+
+flags ::= (':o-support' | ':i-support' | ':chunk' | ':default')
+
+// grammar for condition side
+
+condition_side ::= state_imp_cond (cond)*
+
+state_imp_cond ::= "(" ('state' | "impasse") id_test? attr_value_tests+ ")"
+
+cond ::= positive_cond | "-" positive_cond
+
+positive_cond ::= conds_for_one_id | "{" cond+ "}"
+
+conds_for_one_id ::= "(" ['state' | "impasse"] id_test attr_value_tests+ ")"
+
+id_test ::= variable
+
+attr_value_tests ::= ["-"] CARET attr_test ("." attr_test)* value_test*
+
+attr_test ::= test
+
+value_test ::= test ["+"] | conds_for_one_id ["+"]
+
+test ::= conjunctive_text | simple_test
+
+conjunctive_text ::= "{" simple_test+ "}"
+
+simple_test ::= disjunction_test | relational_test
+
+disjunction_test ::= "<<" constant+ ">>"
+
+relational_test ::= [relation] single_test
+
+relation ::= "<>" | "<" | ">" | "<=" | ">=" | "=" | "<=>"
+
+single_test ::= variable | constant
+
+constant ::= sym_constant | int_constant | float_constant
+
+// grammar for action side
+
+rhs ::= rhs_action*
+
+rhs_action ::= "(" variable attr_value_make+ ")" | func_call
+
+func_call ::= "(" func_name rhs_value* ")"
+
+func_name ::= sym_constant | "+" | "-" | "*" | "/"
+
+rhs_value ::= constant | func_call | variable
+
+attr_value_make ::= "^" variable_or_sym_constant ("." variable_or_sym_constant)* value_make+
+
+variable_or_sym_constant ::= variable | sym_constant
+
+value_make ::= rhs_value preference_specifier*
+
+preference_specifier ::= unary_preference [","] | unary_or_binary_preference [","] | unary_or_binary_preference rhs_value [","]
+
+unary_preference ::= "+" | "-" | "!" | "~" | "@"
+
+unary_or_binary_preference ::= ">" | "=" | "<" | "&"
