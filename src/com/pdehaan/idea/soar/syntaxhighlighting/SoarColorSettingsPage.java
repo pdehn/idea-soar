@@ -1,10 +1,12 @@
-package com.pdehaan.idea.soar;
+package com.pdehaan.idea.soar.syntaxhighlighting;
 
 import com.intellij.openapi.editor.colors.TextAttributesKey;
 import com.intellij.openapi.fileTypes.SyntaxHighlighter;
 import com.intellij.openapi.options.colors.AttributesDescriptor;
 import com.intellij.openapi.options.colors.ColorDescriptor;
 import com.intellij.openapi.options.colors.ColorSettingsPage;
+import com.pdehaan.idea.soar.SoarIcons;
+import com.pdehaan.idea.soar.syntaxhighlighting.SoarSyntaxHighlighter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

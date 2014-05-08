@@ -1,4 +1,4 @@
-package com.pdehaan.idea.soar;
+package com.pdehaan.idea.soar.syntaxhighlighting;
 
 import com.intellij.openapi.fileTypes.SyntaxHighlighter;
 import com.intellij.openapi.fileTypes.SyntaxHighlighterFactory;

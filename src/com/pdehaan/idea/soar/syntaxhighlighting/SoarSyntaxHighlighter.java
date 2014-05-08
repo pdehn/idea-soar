@@ -1,4 +1,4 @@
-package com.pdehaan.idea.soar;
+package com.pdehaan.idea.soar.syntaxhighlighting;
 
 import com.intellij.lexer.FlexAdapter;
 import com.intellij.lexer.Lexer;
@@ -6,6 +6,7 @@ import com.intellij.openapi.editor.DefaultLanguageHighlighterColors;
 import com.intellij.openapi.editor.colors.TextAttributesKey;
 import com.intellij.openapi.fileTypes.SyntaxHighlighterBase;
 import com.intellij.psi.tree.IElementType;
+import com.pdehaan.idea.soar._SoarLexer;
 import com.pdehaan.idea.soar.psi.SoarTypes;
 import org.jetbrains.annotations.NotNull;
 

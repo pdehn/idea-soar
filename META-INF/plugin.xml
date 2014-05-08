@@ -25,8 +25,8 @@
   <extensions defaultExtensionNs="com.intellij">
       <fileTypeFactory implementation="com.pdehaan.idea.soar.SoarFileTypeFactory" />
       <lang.parserDefinition language="Soar" implementationClass="com.pdehaan.idea.soar.SoarParserDefinition" />
-      <lang.syntaxHighlighterFactory key="Soar" implementationClass="com.pdehaan.idea.soar.SoarSyntaxHighlighterFactory" />
-      <colorSettingsPage implementation="com.pdehaan.idea.soar.SoarColorSettingsPage" />
+      <lang.syntaxHighlighterFactory key="Soar" implementationClass="com.pdehaan.idea.soar.syntaxhighlighting.SoarSyntaxHighlighterFactory" />
+      <colorSettingsPage implementation="com.pdehaan.idea.soar.syntaxhighlighting.SoarColorSettingsPage" />
       <completion.contributor language="Soar" implementationClass="com.pdehaan.idea.soar.SoarCompletionContributor" />
       <lang.formatter language="Soar" implementationClass="com.pdehaan.idea.soar.formatting.SoarFormattingModelBuilder" />
       <codeStyleSettingsProvider implementation="com.pdehaan.idea.soar.formatting.SoarCodeStyleSettingsProvider" />
