@@ -29,6 +29,8 @@
       <colorSettingsPage implementation="com.pdehaan.idea.soar.SoarColorSettingsPage" />
       <completion.contributor language="Soar" implementationClass="com.pdehaan.idea.soar.SoarCompletionContributor" />
       <lang.formatter language="Soar" implementationClass="com.pdehaan.idea.soar.formatting.SoarFormattingModelBuilder" />
+      <codeStyleSettingsProvider implementation="com.pdehaan.idea.soar.formatting.SoarCodeStyleSettingsProvider" />
+      <langCodeStyleSettingsProvider implementation="com.pdehaan.idea.soar.formatting.SoarLanguageCodeStyleSettingsProvider" />
   </extensions>
 
   <application-components>
